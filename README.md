@@ -1,5 +1,9 @@
 # Lab №1
-![](/pics/snek.png "")*
+
+<p align="center">
+  <img src="/pics/snek.png">
+</p>*
+
 ## Arduino simple Snek™**
 
 A uni project.
