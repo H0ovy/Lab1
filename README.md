@@ -1,16 +1,17 @@
-# Simple Project
+# Lab №1
+## Arduino simple Snek™*
 
-Данный проект основан на https://wokwi.com/projects/344891652101374548
+A uni project.
+A simple, barely working, snake game on arduino.
 
+### Requirements
 
-## Build the project
+- Wokwi for vscode
+- PlatfromIO
+- All their dependencies
 
-Это проект с [PlatformIO](https://platformio.org). Для сборки проекта используйте [install PlatformIO](https://docs.platformio.org/en/latest/core/installation/index.html), или с помощью команды:
+#### Credits
 
-```
-pio run
-```
+Dorogov Maksim, TUSUR, 193
 
-## Simulate the project
-
-Для запуска симуляции проекта [Wokwi for VS Code](https://marketplace.visualstudio.com/items?itemName=wokwi.wokwi-vscode).
+###### * not a real trademark
