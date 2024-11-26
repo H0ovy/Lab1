@@ -1,5 +1,6 @@
 # Lab №1
-## Arduino simple Snek™*
+![](/pics/snek.png "")*
+## Arduino simple Snek™**
 
 A uni project.
 A simple, barely working, snake game on arduino.
@@ -10,8 +11,9 @@ A simple, barely working, snake game on arduino.
 - PlatfromIO
 - All their dependencies
 
-#### Credits
+### Credits
 
 Dorogov Maksim, TUSUR, 193
 
-###### * not a real trademark
+###### * a random image from the internet, all credits goes to the author
+###### ** not a real trademark
