@@ -20,13 +20,14 @@ bool CheckCol = true;
 
 volatile int Dir = 4;
 
-void controlLED(int y, int x, CRGB color) 
+void controlLED(int y, int x, CRGB color)
 {
   int ledIndex = x + y * 16;
   leds[ledIndex] = color;
 }
 
-void AddApple(int x, int y){
+void AddApple(int x, int y)     // Создание яблока
+{
   snake.SetApplePos(x, y);
   controlLED(x, y, CRGB::Yellow);
 }
@@ -36,7 +37,7 @@ void AddBlockedArea(int x, int y){
   controlLED(x, y, CRGB::Blue);
 }
 
-void GG()
+void GG()     // Конец игры
 {
   for(int i = 0; i < 256; i++)
         leds[i] = CRGB::Red;
@@ -61,22 +62,8 @@ void RemoveColoredLED(){
   controlLED(tail.end_X, tail.end_Y, CRGB::Black);
 }
 
-void MoveSnek(int dir){
-
-    // int temp_size = 1;
-    // while (temp_size > 0)
-    // {
-    //   controlLED(snake.X, snake.Y, CRGB::Black);
-    //   FastLED.show();
-    //   temp_size--;
-    // }
-
-    // if (tail.size > 0){
-    //   tail.begin_X = snake.X;
-    //   tail.begin_Y = snake.Y;
-    //   controlLED(tail.begin_X, tail.begin_Y, CRGB::Red);
-    // }
-
+void MoveSnek(int dir)
+{
     switch(dir){
       case(1):      // Left
         snake.X--;
@@ -102,8 +89,8 @@ void ChangeDirU(){
   Dir = 3;
 }
 
-
-ISR (PCINT2_vect) {
+ISR (PCINT2_vect) 
+{
   if (!digitalRead(1)) {
     Dir = 1;
   }
@@ -116,7 +103,8 @@ ISR (PCINT2_vect) {
 }
 
 
-void CheckApple(){
+void CheckApple()      // Проверка на поднятие яблока
+{
   if(snake.X == snake.GetApplePosX() && snake.Y == snake.GetApplePosY())
   {
     tail.Expand(snake.X, snake.Y);
@@ -125,14 +113,16 @@ void CheckApple(){
   }
 }
 
-void CheckArea(){
+void CheckArea()      // Проверка на столкновение с припятствием
+{
   if(snake.X == snake.GetAreaPosX() && snake.Y == snake.GetAreaPosY())
   {
     GG();
   }
 }
 
-void CheckCollission(bool Check){
+void CheckCollission(bool Check)      // Проверка столкновения с самим собой
+{
   if (!Check)
     return;
 
@@ -168,7 +158,6 @@ void setup()
 
   snake.X = 8;
   snake.Y = 8;
-  
 }
 
 void loop() 
@@ -191,5 +180,7 @@ void loop()
   FastLED.show();
   CheckCol = true;
   delay(500);
+
+  uint8_t
 }
 
