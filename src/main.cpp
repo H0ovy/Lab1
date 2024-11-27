@@ -16,6 +16,8 @@ CRGB leds[NUM_LEDS];
 Snake snake;
 Tail tail(8, 8);
 
+bool CheckCol = true;
+
 volatile int Dir = 4;
 
 void controlLED(int y, int x, CRGB color) 
@@ -119,6 +121,7 @@ void CheckApple(){
   {
     tail.Expand(snake.X, snake.Y);
     AddApple(rand() % 16, rand() % 16);
+    CheckCol = false;
   }
 }
 
@@ -129,17 +132,20 @@ void CheckArea(){
   }
 }
 
-// void CheckCollission(){
-//   auto tmpTail = tail.GetHistory();
-//   if(tmpTail.size() != 0)
-//   {
-//     for (auto val = 0; val < tmpTail.size() - 1; val++)
-//     {
-//       if(tmpTail[val].first == snake.X || tmpTail[val].second == snake.Y)
-//         GG();
-//     }
-//   }
-// }
+void CheckCollission(bool Check){
+  if (!Check)
+    return;
+
+  auto tmpTail = tail.GetHistory();
+  if(tmpTail.size() != 0)
+  {
+    for (auto val = 0; val < tmpTail.size(); val++)
+    {
+      if(tmpTail[val].first == snake.X && tmpTail[val].second == snake.Y)
+        GG();
+    }
+  }
+}
 
 void setup() 
 {
@@ -171,7 +177,7 @@ void loop()
   MoveSnek(Dir);
   CheckApple();
   CheckArea();
-  // CheckCollission();
+  CheckCollission(CheckCol);
   controlLED(snake.X, snake.Y, CRGB::Red);
   RemoveColoredLED();
   auto tmpTail = tail.GetHistory();
@@ -183,6 +189,7 @@ void loop()
     }
   }
   FastLED.show();
+  CheckCol = true;
   delay(500);
 }
 
